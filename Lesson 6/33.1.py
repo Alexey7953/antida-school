@@ -56,5 +56,39 @@ class Category_with_workers(Employee):
     def _payment(self) -> float:
         return super()._payment() * self.category
 
-class WorkerRateByHours(Worker):
 
+class WorkerRateByHours(Employee):
+    def _payment(self):
+        return super()._payment() * self.hours
+
+
+class Manager(Employee):
+    pass
+
+
+class Technician(Category_with_workers):
+    pass
+
+
+class Driver(Category_with_workers, WorkerRateByHours):
+    pass
+
+
+if __name__ == '__main__':
+
+    total_salary = 0
+    number_of_workers = int(input())
+
+    for i in range(number_of_workers):
+        worker_info = input().lower().split()
+        position = worker_info.pop(0)
+
+        if position == 'manager':
+            total_salary += Manager(*worker_info).count_salary()
+
+        elif position == 'technician':
+            total_salary += Technician(*worker_info).count_salary()
+        elif position == 'driver':
+            total_salary += Driver(*worker_info).count_salary()
+
+        print(total_salary)
