@@ -49,5 +49,12 @@ class Category_with_workers(Employee):
         'c': 1.0
     }
 
+    def __init__(self, base_payment, prize, hours, category):
+        super().__init__(base_payment, prize, hours)
+        self.category = self.categories[category]
 
+    def _payment(self) -> float:
+        return super()._payment() * self.category
+
+class WorkerRateByHours(Worker):
 
