@@ -37,3 +37,12 @@ class Employee:
         return self.salary
 
 
+class Slogger(Employee):
+    def __init__(self, salary):
+        Employee.__init__(self, salary)
+
+    def paycheck(self):
+        super().paycheck()
+
+
+person = Slogger()
