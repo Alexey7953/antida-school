@@ -48,6 +48,7 @@ class Employee(object):
 
 
 class Category_with_workers(Employee):
+    """коэффициент базовой зарплаты"""
 
     categories = {
         'a': 1.25,
@@ -64,6 +65,7 @@ class Category_with_workers(Employee):
 
 
 class WorkerRateByHours(Employee):
+    """Класс сотрудников организации с почасовой ставкой"""
 
     def _payment(self):
         return super()._payment() * self.hours
