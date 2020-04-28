@@ -102,4 +102,4 @@ if __name__ == '__main__':
         elif position == 'driver':
             total_salary += Driver(*worker_info).count_salary()
 
-        print(total_salary)
+    print(total_salary)
