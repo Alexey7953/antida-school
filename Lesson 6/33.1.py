@@ -51,13 +51,13 @@ class Category_with_workers(Employee):
     """коэффициент базовой зарплаты"""
 
     categories = {
-        'a': 1.25,
-        'b': 1.15,
-        'c': 1.0
+        'A': 1.25,
+        'B': 1.15,
+        'C': 1.0
     }
 
-    def __init__(self, base_payment, prize, hours, category):
-        super().__init__(base_payment, prize, hours)
+    def __init__(self, base_payment, hours, category):
+        super().__init__(base_payment, hours)
         self.category = self.categories[category]
 
     def _payment(self) -> float:
