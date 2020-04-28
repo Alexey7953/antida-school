@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CATALOG>
+	<CD artist="Боб Дилан" title="Имперская Пародия">
+		<COUNTRY>США</COUNTRY>
+		<PRICE>4</PRICE>
+		<YEAR>1985</YEAR>
+		<COUNT>5</COUNT>
+	</CD>
+	<CD artist="Бонни Тайлер" title="Спрячь свое сердце">
+		<COUNTRY>Соединенное Королевство</COUNTRY>
+		<PRICE>9.90</PRICE>
+		<YEAR>1988</YEAR>
+		<COUNT>2</COUNT>
+	</CD>
+	<CD artist="Долли Партон" title="Лучшие Хиты">
+		<COUNTRY>США</COUNTRY>
+		<PRICE>9.90</PRICE>
+		<YEAR>1982</YEAR>
+		<COUNT>0</COUNT>
+	</CD>
+	<CD artist="Гарри Мур" title="Still got the blues">
+		<COUNTRY>Соединенное Королевство</COUNTRY>
+		<PRICE>10.20</PRICE>
+		<YEAR>1990</YEAR>
+		<COUNT>1</COUNT>
+	</CD>
+	<CD artist="Эрос Рамазотти" title="Эрос">
+		<COUNTRY>ЕС</COUNTRY>
+		<PRICE>9.90</PRICE>
+		<YEAR>1997</YEAR>
+		<COUNT>1</COUNT>
+	</CD>
+	<CD artist="Бии Гиис" title="Только одну ночь">
+		<COUNTRY>Соединенное Королевство</COUNTRY>
+		<PRICE>10.90</PRICE>
+		<YEAR>1998</YEAR>
+		<COUNT>9</COUNT>
+	</CD>
+	<CD artist="Доктор Хук" title="Мама Сильвии">
+		<COUNTRY>Соединенное Королевство</COUNTRY>
+		<PRICE>8.10</PRICE>
+		<YEAR>1971</YEAR>
+		<COUNT>7</COUNT>
+	</CD>
+	<CD artist="Мэгги Мэй" title="Род Стюарт">
+		<COUNTRY>Соединенное Королевство</COUNTRY>
+		<PRICE>8.50</PRICE>
+		<YEAR>1990</YEAR>
+		<COUNT>0</COUNT>
+	</CD>
+	<CD artist="Андреа Бочелли" title="Романза">
+		<COUNTRY>ЕС</COUNTRY>
+		<PRICE>10.80</PRICE>
+		<YEAR>1996</YEAR>
+		<COUNT>5</COUNT>
+	</CD>
+	<CD artist="Пирси Слидж" title="Когда мужчина любит женщину">
+		<COUNTRY>США</COUNTRY>
+		<PRICE>8.70</PRICE>
+		<YEAR>1987</YEAR>
+		<COUNT>3</COUNT>
+	</CD>
+		<CD artist="Scooter" title="Weekend">
+		<COUNTRY>Германия</COUNTRY>
+		<PRICE>12.5</PRICE>
+		<YEAR>2003</YEAR>
+		<COUNT>0</COUNT>
+	</CD>
+	<CD artist="Дикая Роза" title="Черный Ангел">
+		<COUNTRY>ЕС</COUNTRY>
+		<PRICE>10.90</PRICE>
+		<YEAR>1995</YEAR>
+		<COUNT>1</COUNT>
+	</CD>
+	<CD artist="Кенни Роджерс" title="Для хороших времен">
+		<COUNTRY>Соединенное Королевство</COUNTRY>
+		<PRICE>8.70</PRICE>
+		<YEAR>1995</YEAR>
+		<COUNT>3</COUNT>
+	</CD>
+	<CD artist="Уилл Смит" title="Стиль Большого Человека">
+		<COUNTRY>США</COUNTRY>
+		<PRICE>9.90</PRICE>
+		<YEAR>1997</YEAR>
+		<COUNT>0</COUNT>
+	</CD>
+	<CD artist="Ван Моррисон" title="Ниссовый Мед">
+		<COUNTRY>Соединенное Королевство</COUNTRY>
+		<PRICE>8.20</PRICE>
+		<YEAR>1971</YEAR>
+		<COUNT>3</COUNT>
+	</CD>
+	<CD artist="Джорн Хоэл" title="Соулсвилл">
+		<COUNTRY>Норвегия</COUNTRY>
+		<PRICE>7.90</PRICE>
+		<YEAR>1996</YEAR>
+		<COUNT>4</COUNT>
+	</CD>
+	<CD artist="Кэт Стивенс" title="Лучшее из">
+		<COUNTRY>Соединенное Королевство</COUNTRY>
+		<PRICE>8.90</PRICE>
+		<YEAR>1990</YEAR>
+		<COUNT>2</COUNT>
+	</CD>
+	<CD artist="Сэм Браун" title="Стоп">
+		<COUNTRY>Соединенное Королевство</COUNTRY>
+		<PRICE>8.90</PRICE>
+		<YEAR>1988</YEAR>
+		<COUNT>3</COUNT>
+	</CD>
+	<CD artist="Руки вверх" title="18 мне уже">
+		<COUNTRY>Россия</COUNTRY>
+		<PRICE>4.25</PRICE>
+		<YEAR>2001</YEAR>
+		<COUNT>1</COUNT>
+	</CD>
+	<CD artist="T'Pau" title="Мост Шпионов">
+		<COUNTRY>Соединенное Королевство</COUNTRY>
+		<PRICE>7.90</PRICE>
+		<YEAR>1987</YEAR>
+		<COUNT>4</COUNT>
+	</CD>
+	<CD artist="Тина Тернер" title="Приватный Танцор">
+		<COUNTRY>Соединенное Королевство</COUNTRY>
+		<PRICE>8.90</PRICE>
+		<YEAR>1983</YEAR>
+		<COUNT>6</COUNT>
+	</CD>
+	<CD artist="Лучиано Паваротти" title="Паваротти Гала Концерт">
+		<COUNTRY>Соединенное Королевство</COUNTRY>
+		<PRICE>9.90</PRICE>
+		<YEAR>1991</YEAR>
+		<COUNT>7</COUNT>
+	</CD>
+	<CD artist="Отис Реддинг" title="Док в заливе">
+		<COUNTRY>США</COUNTRY>
+		<PRICE>7.90</PRICE>
+		<YEAR>1987</YEAR>
+		<COUNT>1</COUNT>
+	</CD>
+	<CD artist="Тату" title="200 по встречной">
+		<COUNTRY>Россия</COUNTRY>
+		<PRICE>5.0</PRICE>
+		<YEAR>2001</YEAR>
+		<COUNT>0</COUNT>
+	</CD>
+	<CD artist="Симпли Рэд" title="Книга с картинками">
+		<COUNTRY>ЕС</COUNTRY>
+		<PRICE>7.20</PRICE>
+		<YEAR>1985</YEAR>
+		<COUNT>2</COUNT>
+	</CD>
+	<CD artist="Коммунары" title="Красный">
+		<COUNTRY>Соединенное Королевство</COUNTRY>
+		<PRICE>7.80</PRICE>
+		<YEAR>1987</YEAR>
+		<COUNT>5</COUNT>
+	</CD>
+	<CD artist="Джо Коккер" title="Освободи мое сердце">
+		<COUNTRY>США</COUNTRY>
+		<PRICE>8.20</PRICE>
+		<YEAR>1987</YEAR>
+		<COUNT>2</COUNT>
+	</CD>
+</CATALOG>
