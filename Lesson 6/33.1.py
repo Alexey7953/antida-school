@@ -42,7 +42,8 @@ class Slogger(Employee):
         Employee.__init__(self, salary)
 
     def paycheck(self):
-        super().paycheck()
 
 
-person = Slogger()
+
+
+
