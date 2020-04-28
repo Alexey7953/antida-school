@@ -29,21 +29,25 @@
 """
 
 
-class Employee:
-    def __init__(self, salary):
-        self.salary = float(salary)
+class Employee(object):
+    def __init__(self, base_payment, prize, hours):
+        self.base_payment = float(base_payment)
+        self.prize = float(prize)
+        self.hours = int(hours)
 
-    def pay_check(self):
-        return self.salary
+    def _payment(self) -> float:
+        return self.base_payment
 
-
-class Slogger(Employee):
-    def __init__(self, salary):
-        Employee.__init__(self, salary)
-
-    def paycheck(self):
+    def count_salary(self) -> float:
+        return self._payment() + self.prize
 
 
+class Category_with_workers(Employee):
+    categories = {
+        'a': 1.25,
+        'b': 1.15,
+        'c': 1.0
+    }
 
 
 
