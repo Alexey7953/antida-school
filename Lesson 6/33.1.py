@@ -74,7 +74,7 @@ class Technician(Category_with_workers):
     pass
 
 
-class Driver(Category_with_workers, WorkerRateByHours):
+class Driver(WorkerRateByHours, Category_with_workers):
     pass
 
 
