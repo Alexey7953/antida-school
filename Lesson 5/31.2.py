@@ -55,8 +55,8 @@ def print_cd(item):
     print(f'{item.year} год. {item.count} шт. "{item.title}" - {item.artist}')
 
 
-def filter_incoming(elem):
-    cd = Cd(
+def create_cd(elem):
+    return Cd(
         elem.get('artist'),
         elem.get('title'),
         int(elem.find('YEAR').text),
@@ -79,14 +79,8 @@ result = set()
 if 'all' in incoming:
 
     for element in catalog.iter('CD'):
-        cd = Cd(
-            element.get('artist'),
-            element.get('title'),
-            int(element.find('YEAR').text),
-            int(element.find('COUNT').text),
-        )
 
-        result.add(cd)
+        result.add(create_cd(element))
 
 else:
 
@@ -94,13 +88,8 @@ else:
         for name in incoming:
 
             if element.get('artist').lower().count(name):
-                cd = Cd(
-                    element.get('artist'),
-                    element.get('title'),
-                    int(element.find('YEAR').text),
-                    int(element.find('COUNT').text),
-                )
-                result.add(cd)
+
+                result.add(create_cd(element))
 
 if result:
     result = sorted(result, key=lambda x: (x.year, -x.count))
