@@ -35,9 +35,8 @@
 
 class Employee(object):
 
-    def __init__(self, base_payment, prize, hours):
+    def __init__(self, base_payment, hours):
         self.base_payment = float(base_payment)
-        self.prize = float(prize)
         self.hours = int(hours)
 
     def _payment(self) -> float:
