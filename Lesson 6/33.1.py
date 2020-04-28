@@ -34,6 +34,7 @@
 
 
 class Employee(object):
+
     def __init__(self, base_payment, prize, hours):
         self.base_payment = float(base_payment)
         self.prize = float(prize)
@@ -47,6 +48,7 @@ class Employee(object):
 
 
 class Category_with_workers(Employee):
+
     categories = {
         'a': 1.25,
         'b': 1.15,
@@ -62,19 +64,23 @@ class Category_with_workers(Employee):
 
 
 class WorkerRateByHours(Employee):
+
     def _payment(self):
         return super()._payment() * self.hours
 
 
 class Manager(Employee):
+    """Класс менеджер"""
     pass
 
 
 class Technician(Category_with_workers):
+    """Класс техника"""
     pass
 
 
 class Driver(WorkerRateByHours, Category_with_workers):
+    """Класс водителя"""
     pass
 
 
