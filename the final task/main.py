@@ -66,12 +66,12 @@ Done.
 Код программы хорошо протестировать на собственном компьютере, сюда отправить только код решения, если решение
 займет больше одного файла, то разделить код файлов соотв. комментарием.
 """
-import click
-import sys
+import argparse
+import os
 
-@click.command()
-def help_me():
-    click.echo('do you need a help?')
+
+def console(analize, read, extract):
+
 
 
 
