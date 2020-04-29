@@ -35,35 +35,36 @@
 
 class Employee(object):
 
-    def __init__(self, base_payment, hours):
+    def __init__(self, base_payment, prize, hours):
         self.base_payment = float(base_payment)
         self.hours = int(hours)
+        self.prize = float(prize)
 
-    def _payment(self) -> float:
+    def _payment(self):
         return self.base_payment
 
-    def count_salary(self) -> float:
+    def count_salary(self):
         return self._payment() + self.prize
 
 
-class Category_with_workers(Employee):
+class EmployeeCategory(Employee):
     """коэффициент базовой зарплаты"""
 
     categories = {
-        'A': 1.25,
-        'B': 1.15,
-        'C': 1.0
+        'a': 1.25,
+        'b': 1.15,
+        'c': 1.0
     }
 
-    def __init__(self, base_payment, hours, category):
-        super().__init__(base_payment, hours)
+    def __init__(self, base_payment, prize, hours, category):
+        super().__init__(base_payment, prize, hours)
         self.category = self.categories[category]
 
-    def _payment(self) -> float:
+    def _payment(self):
         return super()._payment() * self.category
 
 
-class WorkerRateByHours(Employee):
+class EmployeeHours(Employee):
     """Класс сотрудников организации с почасовой ставкой"""
 
     def _payment(self):
@@ -75,12 +76,12 @@ class Manager(Employee):
     pass
 
 
-class Technician(Category_with_workers):
+class Technician(EmployeeCategory):
     """Класс техника"""
     pass
 
 
-class Driver(WorkerRateByHours, Category_with_workers):
+class Driver(EmployeeHours, EmployeeCategory):
     """Класс водителя"""
     pass
 
@@ -88,18 +89,22 @@ class Driver(WorkerRateByHours, Category_with_workers):
 if __name__ == '__main__':
 
     total_salary = 0
-    number_of_workers = int(input())
+    employers = int(input())
 
-    for i in range(number_of_workers):
-        worker_info = input().lower().split()
-        position = worker_info.pop(0)
+    for i in range(employers):
+        employee_info = input().lower().split()
+        position = employee_info.pop(0)
 
         if position == 'manager':
-            total_salary += Manager(*worker_info).count_salary()
+            base_payment, prize, hours = employee_info
+            total_salary += Manager(base_payment, prize, hours).count_salary()
 
         elif position == 'technician':
-            total_salary += Technician(*worker_info).count_salary()
+            base_payment, prize, hours, category = employee_info
+            total_salary += Technician(base_payment, prize, hours, category).count_salary()
+
         elif position == 'driver':
-            total_salary += Driver(*worker_info).count_salary()
+            base_payment, prize, hours, category = employee_info
+            total_salary += Driver(base_payment, prize, hours, category).count_salary()
 
     print(total_salary)
