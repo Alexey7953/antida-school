@@ -74,19 +74,10 @@ for folder, sub, files in tree:
     for file in files:
         print(file)
 
-
-def music_mp3():
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        '-s', '--src-dir',
-        help=''
-    )
-
-    return parser
-
+    parser.add_argument('-s', '--src-dir')
+    parser.add_argument('-d', '--dst-dir')
 
 if __name__ == '__main__':
     parse = music_mp3()
     name = parse.parse_args()
-
-    print(name)
