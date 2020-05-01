@@ -79,5 +79,4 @@ for folder, sub, files in tree:
     parser.add_argument('-d', '--dst-dir')
 
 if __name__ == '__main__':
-    parse = music_mp3()
-    name = parse.parse_args()
+    parse = ()
