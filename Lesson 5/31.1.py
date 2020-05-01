@@ -71,3 +71,27 @@ def run():
 
 if __name__ == '__main__':
     run()
+
+# Решение от преподавателя
+
+import xml.etree.ElementTree as ET
+
+tree = ET.parse('catalog.xml')
+albums = []
+date_start, date_end = int(input()), int(input())
+
+for tag in tree.getroot():
+    year = int(tag.find('YEAR').text)
+    if year >= date_start and year <= date_end:
+        artist = tag.attrib['artist']
+        title = tag.attrib['title']
+        albums.append((year, f'{artist} - "{title}"'))
+
+if not albums:
+    print('Ничего не найдено')
+else:
+    albums.sort(key=lambda x: x[0])
+    print(f'За период {date_start}-{date_end} было выпущено: {len(albums)} альбома(ов)')
+    for album in albums:
+        year, title = album
+        print(f'{year}: {title}')
