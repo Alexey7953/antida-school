@@ -66,15 +66,27 @@ Done.
 """
 
 import os
-import argparse
+import argparse  # https://jenyay.net/Programming/Argparse
 
 tree = os.walk('mp3')
 for folder, sub, files in tree:
-    print(folder, files)
+    print(files)
     for file in files:
         print(file)
 
-parser = argparse.ArgumentParser()
-parser.add_argument(
 
-)
+def music_mp3():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        '-s', '--src-dir',
+        help=''
+    )
+
+    return parser
+
+
+if __name__ == '__main__':
+    parse = music_mp3()
+    name = parse.parse_args()
+
+    print(name)
