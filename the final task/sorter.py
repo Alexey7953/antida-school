@@ -68,7 +68,7 @@ Done.
 import os
 import argparse  # https://jenyay.net/Programming/Argparse
 
-tree = os.walk('mp3')
+tree = os.walk('mp3')  # https://pythoner.name/walk
 for folder, sub, files in tree:
     print(files)
     for file in files:
