@@ -69,5 +69,12 @@ import os
 import argparse
 
 tree = os.walk('mp3')
-for i in tree:
-     print(i)
+for folder, sub, files in tree:
+     print(folder, files)
+     for file in files:
+          print(file)
+
+parser = argparse.ArgumentParser()
+parser.add_argument(
+     
+)
