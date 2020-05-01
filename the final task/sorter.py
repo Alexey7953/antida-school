@@ -67,26 +67,39 @@ Done.
 
 import os
 import argparse  # https://jenyay.net/Programming/Argparse
+import eyeD3
+# Sorter
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    '-s',
+    '--scr-dir',
+    help='Source directory.',
+    action='store',
+    dest='src_dir',
+    default=os.getcwd()
+)
+parser.add_argument(
+    '-d',
+    '--dst-dir',
+    help='Destination directory.',
+    action='store',
+    dest='dst_dir',
+    default=os.getcwd()
+)
 
-tree = os.walk('mp3')  # https://pythoner.name/walk
-for folder, sub, files in tree:
-    print(files)
+args = parser.parse_args()
+
+# print(args.src_dir)
+# print(args.dst_dir)
+
+tree = os.walk(args.src_dir)  # https://pythoner.name/walk
+for folder, _, files in tree:
+
     for file in files:
-        print(file)
+        if file.endswith('.mp3'):
+            os.path.join(folder, file)
+            print(os.path.join(folder, file))
 
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        '-s',
-        '--scr-dir',
-        help='Source directory.',
-        action='store',
-        dest='--scr-dir'
-    )
-    parser.add_argument(
-        '-d',
-        '--dst-dir',
-        help='Destination directory.',
-        action='store',
-        dest='--dst-dir'
-    )
-    parser.add_argument(help='Show this message and exit.')
+# Чтение тегов
+
+
