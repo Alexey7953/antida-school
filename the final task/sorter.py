@@ -67,7 +67,7 @@ Done.
 
 import os
 import argparse  # https://jenyay.net/Programming/Argparse
-import eyeD3
+
 # Sorter
 parser = argparse.ArgumentParser()
 parser.add_argument(
@@ -100,6 +100,6 @@ for folder, _, files in tree:
             os.path.join(folder, file)
             print(os.path.join(folder, file))
 
-# Чтение тегов
+# Чтение тегов  
 
 
