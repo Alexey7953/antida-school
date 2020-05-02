@@ -67,6 +67,7 @@ Done.
 
 import os
 import argparse  # https://jenyay.net/Programming/Argparse
+from mutagen.easyid3 import EasyID3
 
 # Sorter
 parser = argparse.ArgumentParser()
@@ -100,6 +101,6 @@ for folder, _, files in tree:
             os.path.join(folder, file)
             print(os.path.join(folder, file))
 
-# Чтение тегов  
+# Чтение тегов
 
-
+TAG = ('song', 'artist', 'album')
