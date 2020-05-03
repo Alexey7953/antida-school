@@ -67,7 +67,7 @@ Done.
 
 import os
 import argparse  # https://jenyay.net/Programming/Argparse
-from mutagen.easyid3 import EasyID3
+import eyed3
 
 # Sorter
 parser = argparse.ArgumentParser()
@@ -98,9 +98,28 @@ for folder, _, files in tree:
 
     for file in files:
         if file.endswith('.mp3'):
-            os.path.join(folder, file)
+            path = os.path.join(folder, file)
             print(os.path.join(folder, file))
 
-# Чтение тегов
+            # Чтение тегов
+            audiofile = eyed3.load(path)
+            title = audiofile.tag.title
+            artist = audiofile.tag.artist
+            album = audiofile.tag.album
 
-TAG = ('song', 'artist', 'album')
+            if title:
+                new_filename = f'{title} - {artist} - {album}.mp3'
+            else:
+                new_filename = file
+
+            if artist and album:
+                new_path = os.path.join(artist, album)
+            else:
+                continue
+
+            new_file = os.path.join(args.dst_dir, new_path, new_filename)
+            os.rename(path, new_file)
+
+
+print('Done.')
+
