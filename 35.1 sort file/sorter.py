@@ -121,7 +121,5 @@ for folder, _, files in tree:
             except Exception as e:
                 print(e)
 
-
-
 print('Done.')
 
