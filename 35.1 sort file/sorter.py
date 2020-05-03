@@ -68,6 +68,8 @@ Done.
 import os
 import argparse  # https://jenyay.net/Programming/Argparse
 import eyed3     # https://eyed3.readthedocs.io/en/latest/
+import functions
+
 
 # Sorter
 parser = argparse.ArgumentParser()
@@ -94,8 +96,9 @@ tree = os.walk(args.src_dir)  # https://pythoner.name/walk
 for folder, _, files in tree:
 
     for file in files:
-        if file.endswith('.mp3'):
-            old_file = os.path.join(folder, file)
+        old_file = os.path.join(folder, file)
+
+        if file.endswith('.mp3') and functions.file_has_permissions(old_file):
 
             # Чтение тегов
             audio_file = eyed3.load(old_file)
@@ -103,9 +106,8 @@ for folder, _, files in tree:
             artist = audio_file.tag.artist.strip() if audio_file.tag.artist else None
             album = audio_file.tag.album.strip() if audio_file.tag.album else None
 
-            if title:
-                new_filename = f'{title} - {artist} - {album}.mp3'
-            else:
+            new_filename = functions.generate_new_name(title, artist, album)
+            if new_filename is None:
                 new_filename = file
 
             if artist and album:
