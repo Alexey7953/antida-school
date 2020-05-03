@@ -118,7 +118,7 @@ for folder, _, files in tree:
                 continue
 
             new_file = os.path.join(args.dst_dir, new_path, new_filename)
-            os.rename(path, new_file)
+            os.renames(path, new_file)
 
 
 print('Done.')
