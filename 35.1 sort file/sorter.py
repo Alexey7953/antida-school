@@ -99,9 +99,9 @@ for folder, _, files in tree:
 
             # Чтение тегов
             audio_file = eyed3.load(old_file)
-            title = audio_file.tag.title
-            artist = audio_file.tag.artist
-            album = audio_file.tag.album
+            title = audio_file.tag.title.strip() if audio_file.tag.title else None
+            artist = audio_file.tag.artist.strip() if audio_file.tag.artist else None
+            album = audio_file.tag.album.strip() if audio_file.tag.album else None
 
             if title:
                 new_filename = f'{title} - {artist} - {album}.mp3'
