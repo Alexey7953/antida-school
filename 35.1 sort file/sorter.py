@@ -90,22 +90,18 @@ parser.add_argument(
 
 args = parser.parse_args()
 
-# print(args.src_dir)
-# print(args.dst_dir)
-
 tree = os.walk(args.src_dir)  # https://pythoner.name/walk
 for folder, _, files in tree:
 
     for file in files:
         if file.endswith('.mp3'):
-            path = os.path.join(folder, file)
-            print(os.path.join(folder, file))
+            old_file = os.path.join(folder, file)
 
             # Чтение тегов
-            audiofile = eyed3.load(path)
-            title = audiofile.tag.title
-            artist = audiofile.tag.artist
-            album = audiofile.tag.album
+            audio_file = eyed3.load(old_file)
+            title = audio_file.tag.title
+            artist = audio_file.tag.artist
+            album = audio_file.tag.album
 
             if title:
                 new_filename = f'{title} - {artist} - {album}.mp3'
@@ -119,7 +115,9 @@ for folder, _, files in tree:
 
             new_file = os.path.join(args.dst_dir, new_path, new_filename)
             try:
-                os.renames(path, new_file)
+                os.renames(old_file, new_file)
+                print(f'{old_file} -> {new_file}')
+
             except Exception as e:
                 print(e)
 
