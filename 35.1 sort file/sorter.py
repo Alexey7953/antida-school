@@ -102,7 +102,7 @@ for folder, _, files in tree:
         if file.endswith('.mp3') and functions.file_has_permissions(old_file):
 
             # Чтение тегов
-            audio_file = eyed3.load(old_file)
+            audio_file = eyeD3.load(old_file)
             title = audio_file.tag.title.strip() if audio_file.tag.title else None
             artist = audio_file.tag.artist.strip() if audio_file.tag.artist else None
             album = audio_file.tag.album.strip() if audio_file.tag.album else None
