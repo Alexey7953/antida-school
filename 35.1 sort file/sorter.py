@@ -67,9 +67,8 @@ Done.
 
 import os
 import argparse  # https://jenyay.net/Programming/Argparse
-import eyed3     # https://eyed3.readthedocs.io/en/latest/
+import eyed3  # https://eyed3.readthedocs.io/en/latest/
 import functions
-
 
 # Sorter
 parser = argparse.ArgumentParser()
@@ -92,7 +91,7 @@ parser.add_argument(
 
 args = parser.parse_args()
 
-eyed3.log.setLevel("ERROR")
+eyed3.log.setLevel("ERROR")  # https://stackoverflow.com/questions/22403189/python-eyed3-warning
 
 tree = os.walk(args.src_dir)  # https://pythoner.name/walk
 for folder, _, files in tree:
@@ -126,4 +125,3 @@ for folder, _, files in tree:
                 print(e)
 
 print('Done.')
-
