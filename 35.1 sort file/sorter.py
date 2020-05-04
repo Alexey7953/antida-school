@@ -67,7 +67,7 @@ Done.
 
 import os
 import argparse  # https://jenyay.net/Programming/Argparse
-import eyed3  # https://eyed3.readthedocs.io/en/latest/
+import eyeD3
 import functions
 
 # Sorter
