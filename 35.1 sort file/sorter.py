@@ -92,6 +92,8 @@ parser.add_argument(
 
 args = parser.parse_args()
 
+eyed3.log.setLevel("ERROR")
+
 tree = os.walk(args.src_dir)  # https://pythoner.name/walk
 for folder, _, files in tree:
 
