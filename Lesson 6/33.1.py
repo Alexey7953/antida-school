@@ -108,3 +108,124 @@ if __name__ == '__main__':
             total_salary += Driver(base_payment, prize, hours, category).count_salary()
 
     print(total_salary)
+
+
+# Оптимальное решение
+"""
+# Базовый класс, куда мы вынесли общее для ВСЕХ работников
+# состояние (зарплата и премия) и поведение (вычисление полной зарплаты).
+class Employee:
+    def __init__(self, salary, bonus):
+        self.salary = salary
+        self.bonus = bonus
+
+    # Так как премия является фиксированной надбавкой к базовой зарплате,
+    # разобьем логику вычисления на 2 метода.
+    # Метод compute_base_salary вычисляет базовую зарплату.
+    # В данном классе он не реализован, так как нет общей логики для всех работников,
+    # но именно этот метод будет переопределяться в наследниках.
+    def compute_base_salary(self):
+        raise NotImplementedError
+
+    # Метод compute_full_salary вычисляет зарплату с учетом премии,
+    # получая базовую часть из метода compute_base_salary.
+    # В дочерних классах перегружать данный метод не требуется.
+    def compute_full_salary(self):
+        return self.compute_base_salary() + self.bonus
+
+
+class MonthlyPaidEmployee(Employee):
+    def compute_base_salary(self):
+        return self.salary
+
+
+class HourlyPaidEmployee(Employee):
+    # В конструкторе добавляется спицифичный для работников с почасовой зарплатой
+    # атрибут hours_worked.
+    # Остальные параметры передаются базовому конструктору как есть.
+    def __init__(self, salary, bonus, hours_worked):
+        super().__init__(salary, bonus)
+        self.hours_worked = hours_worked
+
+    def compute_base_salary(self):
+        return self.salary * self.hours_worked
+
+
+# Класс, реализующий логику работников с категориями.
+# Пердполагается, что этот класс будет использоваться в комбинации
+# с MonthlyPaidEmployee или HourlyPaidEmployee.
+class RankedEmployee(Employee):
+    categories = {
+        'A': 1.25,
+        'B': 1.15,
+        'C': 1.00,
+    }
+
+    # Так как мы не знаем, от какого из двух классов наследуется,
+    # то принимаем любые атрибуты и предаем их как есть базовому конструктору.
+    # Кроме того, сохраняем категорию работника.
+    def __init__(self, category, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.category = category
+
+    # Вычисляем базовую зарплату, делигируя вызов базовому классу
+    # и домножаем на коеффициент категории.
+    def compute_base_salary(self):
+        base_salary = super().compute_base_salary()
+        category_factor = self.categories[self.category]
+        return base_salary * category_factor
+
+
+class Manager(MonthlyPaidEmployee):
+    pass
+
+
+# Используем мнодественное наследование, чтобы скомбинировать логику вычисления зарплаты.
+# Согласно MRO цепочка вызовов будет следующей:
+#   1. Technician.compute_full_salary
+#   2. Technician.compute_base_salary
+#   3. RankedEmployee.compute_base_salary
+#   4. MonthlyPaidEmployee.compute_base_salary
+class Technician(RankedEmployee, MonthlyPaidEmployee):
+    pass
+
+
+# Используем мнодественное наследование, чтобы скомбинировать логику вычисления зарплаты.
+# Согласно MRO цепочка вызовов будет следующей:
+#   1. Driver.compute_full_salary
+#   2. Driver.compute_base_salary
+#   3. RankedEmployee.compute_base_salary
+#   4. HourlyPaidEmployee.compute_base_salary
+class Driver(RankedEmployee, HourlyPaidEmployee):
+    pass
+
+
+def main():
+    n = int(input())
+    total_salary = 0
+
+    for _ in range(n):
+        # Так как последний параметр опциональный, используем запаковку *
+        # Приводим значения к нужным типам.
+        profession, salary, bonus, hours_worked, *category = input().split()
+        salary = float(salary)
+        bonus = float(bonus)
+        hours_worked = int(hours_worked)
+
+        # Не будем усложнять создание экземпляров,
+        # используем простой условный оператор.
+        if profession == 'manager':
+            employee = Manager(salary, bonus)
+        elif profession == 'technician':
+            employee = Technician(*category, salary, bonus)
+        elif profession == 'driver':
+            employee = Driver(*category, salary, bonus, hours_worked)
+
+        total_salary += employee.compute_full_salary()
+
+    print(total_salary)
+
+
+if __name__ == '__main__':
+    main()
+"""
