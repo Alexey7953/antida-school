@@ -72,8 +72,8 @@ def run():
 if __name__ == '__main__':
     run()
 
-# Решение от преподавателя
-
+# Оптимальное решение
+"""
 import xml.etree.ElementTree as ET
 
 tree = ET.parse('catalog.xml')
@@ -95,3 +95,4 @@ else:
     for album in albums:
         year, title = album
         print(f'{year}: {title}')
+"""
