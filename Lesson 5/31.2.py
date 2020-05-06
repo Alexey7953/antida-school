@@ -116,7 +116,7 @@ else:
 отдельно фильтрация альбомов, отдельно вывод результата. Так код проще воспринимается
 
 # Оптимальное решение
-
+""""
 import xml.etree.ElementTree as ET
 from collections import namedtuple
 
@@ -200,3 +200,4 @@ if '__main__' in __name__:
             print(get_formated_album(album=album))
         print(f'\nСамый пыльный альбом: {get_formated_album(album=dusty_album)}\n'
               f'Самый свежий альбом: {get_formated_album(album=fresh_album)}')
+"""
