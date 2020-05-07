@@ -109,95 +109,9 @@ else:
     print('Ничего не найдено')
 
 # Коментарий от преподавателя
-
+"""
 1. element.get('artist').lower().count(name) — лучше использовать name in element.get('artist').lower()
 
 2. Хочется больше разбиения на функции, чтобы логика была сгруппирована. Например, отдельно парсинг XML в namedtuple,
 отдельно фильтрация альбомов, отдельно вывод результата. Так код проще воспринимается
-
-# Оптимальное решение
-""""
-import xml.etree.ElementTree as ET
-from collections import namedtuple
-
-Album = namedtuple('Album', ['artist', 'title', 'year', 'count'])
-
-
-def get_formated_album(album: Album) -> str:
-
-    """ Возвращает строковое представление альбома """
-
-    return f'{album.year} год. {album.count} шт. "{album.title}" - {album.artist}'
-
-
-def artist_in_search(artist: str, search_keys: list) -> bool:
-
-    """ Возвращает True/False, результат сопоставления поискового запроса и именем исполнителя
-
-        Параметры:
-            artist:       str, Имя исполнителя
-            search_keys: list, Список фрагментов поискового запроса
-            return:      bool, True если имя исполнителя содержит один из фрагментов поиска
-    """
-
-    result = False
-    if artist:
-        artist = artist.lower()
-        for search_key in search_keys:
-            if search_key.lower() in artist:
-                result = True
-    return result
-
-
-def get_albumns(search_keys: list) -> list:
-
-    """ Возвращает список альбомов из каталога согласно поисковому запросу
-
-        Параметры:
-            search_keys: list, список строк, каждая строка это часть имени исполнителя
-            return:      list, список объектов типа Album,
-                         отсортированных по году(по возрастанию) и количеству(по убыванию)
-
-        Каталога хранится в виде xml файла со структурой:
-            <CATALOG>
-                <CD artist="Имя исполнителя" title="Название альбома">
-                    <COUNTRY>Страна</COUNTRY>
-                    <PRICE>Стоимость (целое число)</PRICE>
-                    <YEAR>Год (четырехзначное число)</YEAR>
-                    <COUNT>Количество (целое число)</COUNT>
-                </CD>
-                ...
-                <CD>...</CD>
-            </CATALOG>
-    """
-
-    search_all = 'all' in search_keys
-    albums = set()
-    xml_tree = ET.parse('catalog.xml')
-    for tag in xml_tree.getroot():
-        artist = tag.attrib['artist']
-        if search_all or artist_in_search(artist=artist, search_keys=search_keys):
-            albums.add(Album(
-                artist=artist,
-                title=tag.attrib['title'],
-                year=int(tag.find('YEAR').text),
-                count=int(tag.find('COUNT').text)
-            ))
-    sorted_albums = sorted(albums, key=lambda x: (x.year, -x.count))
-    return sorted_albums
-
-
-if '__main__' in __name__:
-    search_keys = [key.strip() for key in input().split(',')]
-    albums = get_albumns(search_keys=search_keys)
-    if not albums:
-        print("Ничего не найдено")
-    else:
-        dusty_album = albums[0]
-        fresh_album = albums[-1]
-        print('Список найденных альбомов:')
-        for album in albums:
-            print(get_formated_album(album=album))
-        print(f'\nСамый пыльный альбом: {get_formated_album(album=dusty_album)}\n'
-              f'Самый свежий альбом: {get_formated_album(album=fresh_album)}')
 """
