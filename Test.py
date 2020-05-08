@@ -1,4 +1,7 @@
-import songdetails
-song = songdetails.scan("blah.mp3")
-if song is not None:
-    print (song.artist)
+
+coronavirus == True
+if coronavirus == True:
+    coronavirus == False
+    print("коронавирус побеждён")
+elif coronavirus == False:
+    print("коронавируса не обнаружено")
