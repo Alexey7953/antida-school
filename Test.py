@@ -1,7 +1,13 @@
+import sqlite3
 
-coronavirus == True
-if coronavirus == True:
-    coronavirus == False
-    print("коронавирус побеждён")
-elif coronavirus == False:
-    print("коронавируса не обнаружено")
+connection = sqlite3.connect('example.db')
+cursor = connection.cursor()
+cursor.execute(
+    "CREATE TABLE IF NOT EXISTS account ("
+    "id 		INTEGER PRIMARY KEY AUTOINCREMENT,"
+    "first_name TEXT    NOT NULL,"
+    "last_name 	TEXT    NOT NULL,"
+    "email 		TEXT    NOT NULL UNIQUE,"
+    "password 	TEXT    NOT NULL"
+    ");"
+)
