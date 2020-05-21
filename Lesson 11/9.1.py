@@ -43,3 +43,9 @@
 Задача считается решенной, если после выполнения программы в базе создатутся
 новые отношения и они будут соотв. физической модели.
 """
+
+import sqlite3
+
+with sqlite3.connect('data.db') as connection:
+    c = connection.cursor()
+    c.execute()
