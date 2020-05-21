@@ -126,4 +126,4 @@ with sqlite3.connect('example.db') as connection:
         "car_id     INTEGER NOT NULL REFERENCES car(id)"
         ")"
     )
-    
+
