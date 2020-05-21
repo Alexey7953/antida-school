@@ -58,7 +58,6 @@ with sqlite3.connect('example.db') as connection:
         "password 	TEXT    NOT NULL"
         ");"
     )
-
     # 2 Создание таблицы City
     cursor.execute(
         "CREATE TABLE IF NOT EXISTS city ("
@@ -66,7 +65,6 @@ with sqlite3.connect('example.db') as connection:
         "name   TEXT NOT NULL"
         ");"
     )
-
     # 3 Создание таблицы ZipCode
     cursor.execute(
         "CREATE TABLE IF NOT EXISTS zipcode ("
@@ -74,7 +72,6 @@ with sqlite3.connect('example.db') as connection:
         "city_id     INTEGER NOT NULL REFERENCES city(id)"
         ");"
     )
-
     # 4 Создание таблицы Seller
     cursor.execute(
         "CREATE TABLE IF NOT EXISTS seller ("
@@ -86,7 +83,6 @@ with sqlite3.connect('example.db') as connection:
         "account_id  INTEGER NOT NULL REFERENCES account(id)"
         ");"
     )
-
     # 5 Создание таблицы Color
     cursor.execute(
         "CREATE TABLE color ("
@@ -95,7 +91,6 @@ with sqlite3.connect('example.db') as connection:
         "hex    TEXT NOT NULL"
         ");"
     )
-
     # 6 Создание таблицы Car
     cursor.execute(
         "CREATE TABLE car ("
@@ -115,7 +110,6 @@ with sqlite3.connect('example.db') as connection:
         "car_id     INTEGER NOT NULL REFERENCES car(id)"
         ");"
     )
-
     # 8 Создание таблицы Ad
     cursor.execute(
         "CREATE TABLE ad ("
