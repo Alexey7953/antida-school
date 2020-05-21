@@ -109,7 +109,7 @@ with sqlite3.connect('example.db') as connection:
     )
     # 7 Создание таблицы CarColor
     cursor.execute(
-        "CREATE TABLE carcolor ("
+        "CREATE TABLE car_color ("
         "id         INTEGER PRIMARY KEY AUTOINCREMENT,"
         "color_id   INTEGER NOT NULL REFERENCES color(id),"
         "car_id     INTEGER NOT NULL REFERENCES car(id)"
@@ -133,5 +133,5 @@ with sqlite3.connect('example.db') as connection:
         "title      TEXT NULL"
         "url        TEXT NOT NULL,"
         "car_id     INTEGER NOT NULL REFERENCES car(id) "
+        ")"
     )
-
