@@ -100,7 +100,7 @@ with sqlite3.connect('example.db') as connection:
         "mileage            INTEGER  NOT NULL,"
         "num_owners         INTEGER NOT NULL DEFAULT 1,"
         "reg_number         TEXT NOT NULL"
-        ")"
+        ");"
     )
     # 7 Создание таблицы CarColor
     cursor.execute(
@@ -118,7 +118,7 @@ with sqlite3.connect('example.db') as connection:
         "date       INTEGER NOT NULL,"
         "seller_id  INTEGER NOT NULL REFERENCES seller(id),"
         "car_id     INTEGER NOT NULL REFERENCES car(id)"
-        ")"
+        ");"
     )
     # 9 Создание таблицы Image
     cursor.execute(
@@ -127,14 +127,14 @@ with sqlite3.connect('example.db') as connection:
         "title      TEXT,"
         "url        TEXT NOT NULL,"
         "car_id     INTEGER NOT NULL REFERENCES car(id)"
-        ")"
+        ");"
     )
     # 10 Создание таблицы Tag
     cursor.execute(
         "CREATE TABLE IF NOT EXISTS tag ("
         "id         INTEGER PRIMARY KEY AUTOINCREMENT,"
         "name       TEXT NOT NULL UNIQUE"
-        ")"
+        ");"
     )
     # 11 Создание таблицы AdTag
     cursor.execute(
@@ -142,7 +142,7 @@ with sqlite3.connect('example.db') as connection:
         "id         INTEGER PRIMARY KEY AUTOINCREMENT,"
         "tag_id     INTEGER NOT NULL REFERENCES tag(id),"
         "ad_id      INTEGER NOT NULL REFERENCES ad(id)"
-        ")"
+        ");"
     )
 
 
