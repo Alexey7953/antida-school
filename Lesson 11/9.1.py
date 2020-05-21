@@ -126,4 +126,12 @@ with sqlite3.connect('example.db') as connection:
         "car_id     INTEGER NOT NULL REFERENCES car(id)"
         ")"
     )
+    # 9 Создание таблицы Image
+    cursor.execute(
+        "CREATE TABLE image ("
+        "id         INTEGER PRIMARY KEY AUTOINCREMENT,"
+        "title      TEXT NULL"
+        "url        TEXT NOT NULL,"
+        "car id     INTEGER NOT NULL REFERENCES car(id) "
+    )
 
