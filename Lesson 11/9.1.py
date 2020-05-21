@@ -132,6 +132,6 @@ with sqlite3.connect('example.db') as connection:
         "id         INTEGER PRIMARY KEY AUTOINCREMENT,"
         "title      TEXT NULL"
         "url        TEXT NOT NULL,"
-        "car id     INTEGER NOT NULL REFERENCES car(id) "
+        "car_id     INTEGER NOT NULL REFERENCES car(id) "
     )
 
