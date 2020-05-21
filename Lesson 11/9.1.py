@@ -85,7 +85,7 @@ with sqlite3.connect('example.db') as connection:
     )
     # 5 Создание таблицы Color
     cursor.execute(
-        "CREATE TABLE color ("
+        "CREATE TABLE IF NOT EXISTS color ("
         "id     INTEGER PRIMARY KEY AUTOINCREMENT,"
         "name   TEXT NOT NULL,"
         "hex    TEXT NOT NULL"
@@ -93,7 +93,7 @@ with sqlite3.connect('example.db') as connection:
     )
     # 6 Создание таблицы Car
     cursor.execute(
-        "CREATE TABLE car ("
+        "CREATE TABLE IF NOT EXISTS car ("
         "id                 INTEGER PRIMARY KEY AUTOINCREMENT,"
         "make               TEXT NOT NULL,"
         "model              TEXT NOT NULL,"
@@ -104,7 +104,7 @@ with sqlite3.connect('example.db') as connection:
     )
     # 7 Создание таблицы CarColor
     cursor.execute(
-        "CREATE TABLE car_color ("
+        "CREATE TABLE IF NOT EXISTS car_color("
         "id         INTEGER PRIMARY KEY AUTOINCREMENT,"
         "color_id   INTEGER NOT NULL REFERENCES color(id),"
         "car_id     INTEGER NOT NULL REFERENCES car(id)"
@@ -112,7 +112,7 @@ with sqlite3.connect('example.db') as connection:
     )
     # 8 Создание таблицы Ad
     cursor.execute(
-        "CREATE TABLE ad ("
+        "CREATE TABLE IF NOT EXISTS ad ("
         "id         INTEGER PRIMARY KEY AUTOINCREMENT,"
         "title      TEXT NOT NULL,"
         "date       INTEGER NOT NULL,"
@@ -122,10 +122,28 @@ with sqlite3.connect('example.db') as connection:
     )
     # 9 Создание таблицы Image
     cursor.execute(
-        "CREATE TABLE image ("
+        "CREATE TABLE IF NOT EXISTS image ("
         "id         INTEGER PRIMARY KEY AUTOINCREMENT,"
-        "title      TEXT NULL"
+        "title      TEXT,"
         "url        TEXT NOT NULL,"
-        "car_id     INTEGER NOT NULL REFERENCES car(id) "
+        "car_id     INTEGER NOT NULL REFERENCES car(id)"
         ")"
     )
+    # 10 Создание таблицы Tag
+    cursor.execute(
+        "CREATE TABLE IF NOT EXISTS tag ("
+        "id         INTEGER PRIMARY KEY AUTOINCREMENT,"
+        "name       TEXT NOT NULL UNIQUE"
+        ")"
+    )
+    # 11 Создание таблицы AdTag
+    cursor.execute(
+        "CREATE TABLE IF NOT EXISTS ad_tag ("
+        "id         INTEGER PRIMARY KEY AUTOINCREMENT,"
+        "tag_id     INTEGER NOT NULL REFERENCES tag(id),"
+        "ad_id      INTEGER NOT NULL REFERENCES ad(id)"
+        ")"
+    )
+
+
+
