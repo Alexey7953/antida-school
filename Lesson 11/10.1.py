@@ -132,3 +132,20 @@ with sqlite3.connect('example.db') as connection:
         ('Десятка в хорошем состоянии', {date_4}, 3, 2),
         ('Уаз в люкс комплектации', {date_5}, 4, 2);
     """)
+
+    # Добавление данных в таблицу Image
+    cursor.execute("""
+    INSERT INTO ad (id, title, url, car_id)
+    VALUES 
+    ()
+    """)
+    # Добавление данных в таблицу Tag
+    cursor.execute("""
+    INSERT INTO ad (id, name)
+    ()
+    """)
+    # Добавление данных в таблицу AdTag
+    cursor.execute("""
+    INSERT INTO ad (id, tag_id, ad_id)
+    ()
+    """)
