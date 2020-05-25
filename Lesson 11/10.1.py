@@ -46,8 +46,6 @@
 import sqlite3
 from datetime import datetime
 
-import self
-
 with sqlite3.connect('example.db') as connection:
     cursor = connection.cursor()
 
