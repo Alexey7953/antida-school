@@ -46,6 +46,8 @@
 import sqlite3
 from datetime import datetime
 
+import self
+
 with sqlite3.connect('example.db') as connection:
     cursor = connection.cursor()
 
@@ -59,7 +61,7 @@ with sqlite3.connect('example.db') as connection:
     ]
     image_query = """
      INSERT INTO Image (title, url, car_id)
-     VALUES (?,?,?)
+     VALUES (?,?,?);
      """
     cursor.executemany(image_query, image_data)
 
@@ -73,9 +75,13 @@ with sqlite3.connect('example.db') as connection:
     ]
     tag_query = """
     INSERT INTO Tag (name)
-    VALUES (?)
+    VALUES (?);
     """
-    cursor.executemany(tag_query, tag_data)
+    try:
+        cursor.executemany(tag_query, tag_data)
+    except sqlite3.Error as e:
+        print(e)
+
     # Добавление данных в таблицу AdTag
     adTag_data = [
         ('1', '1'),
@@ -86,6 +92,6 @@ with sqlite3.connect('example.db') as connection:
     ]
     adTag_query = """
     INSERT INTO ad_tag (Tag_id, Ad_id)
-    VALUES (?,?)
+    VALUES (?,?);
     """
     cursor.executemany(adTag_query, adTag_data)
