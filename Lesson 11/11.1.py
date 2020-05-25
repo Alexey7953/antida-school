@@ -30,12 +30,12 @@ with sqlite3.connect('example.db') as connection:
 cursor.execute(
         "SELECT make as 'Модель' "
         "FROM car; "
-    )
+)
 cursor.execute(
         "SELECT model as 'Производитель' "
         "FROM car; "
-    )
+)
 cursor.execute(
         "SELECT reg_number as 'Регистрационный номер' "
         "FROM car;"
-    )
+)
