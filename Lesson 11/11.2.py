@@ -23,3 +23,14 @@ Python допустимо использовать только для подк�
 with sqlite3.connect('example.db') as connection:
     cursor = connection.cursor()
 """
+import sqlite3
+
+with sqlite3.connect('example.db') as connection:
+
+    cursor = connection.cursor()
+    cursor.execute(
+        "SELECT DISTINCT make, model "
+        "FROM car JOIN ad ON car.id=ad.car_id"
+    )
+    for elem in cursor.fetchall():
+        print(elem)

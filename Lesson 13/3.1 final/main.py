@@ -435,7 +435,7 @@ GET /users/<id пользователя>/ads/<id объявления>
 
 from flask import Flask
 
-
+from database import sqlite3
 
 
 app = Flask(__name__)
