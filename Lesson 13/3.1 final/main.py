@@ -433,5 +433,14 @@ POST /ads
 GET /users/<id пользователя>/ads/<id объявления>
 """
 
-from Flask import Flask
+from flask import Flask
+
+
+
+
+app = Flask(__name__)
+
+
+
+
 
