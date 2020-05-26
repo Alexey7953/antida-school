@@ -27,15 +27,17 @@ import sqlite3
 with sqlite3.connect('example.db') as connection:
     cursor = connection.cursor()
 
-cursor.execute(
-        "SELECT make as 'Модель' "
-        "FROM car; "
-)
-cursor.execute(
-        "SELECT model as 'Производитель' "
-        "FROM car; "
-)
-cursor.execute(
-        "SELECT reg_number as 'Регистрационный номер' "
-        "FROM car;"
-)
+    cursor.execute("""
+    SELECT
+        make        AS 'Производитель',
+        model       AS 'Модель',
+        reg_number  AS 'Регистрационный номер'
+    FROM car;
+    """)
+
+    column_names = [description[0] for description in cursor.description]
+    print(column_names)
+
+    for record in cursor.fetchall():
+        print(record)
+
