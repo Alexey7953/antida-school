@@ -27,9 +27,12 @@ with sqlite3.connect('example.db') as connection:
     cursor = connection.cursor()
     cursor.execute(
         "SELECT city.name, car.make, car.model "
-        "FROM car "
-        "JOIN city USING (name)"
-
+        "FROM car NATURAL JOIN city"
+        "WHERE city.name LIKE 'Москва' OR 'Владивосток'"
     )
-    for elem in cursor.fetchall():
-        print(elem)
+    for record in cursor.fetchall():
+        print(record)
+
+        #"FROM car "
+        #"JOIN city ON car.id=car.make "
+        #"FROM car CROSS JOIN city"
