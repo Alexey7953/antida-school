@@ -1,6 +1,7 @@
 from flask import Flask, request, session
 from db import get_db, close_db
 import requests
+from src.database import db
 
 app = Flask(__name__)
 app.teardown_appcontext(close_db)
@@ -62,6 +63,10 @@ def cities():
         return f'{name}', 201
     else:
         return '', 405
+
+
+#with db.connect as connection:
+    #####)
 
 
 app.debug = True
