@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, session
 from db import get_db, close_db
 import requests
 
@@ -12,13 +12,19 @@ def login():
     request_json = request.json
     email = request_json.get('email')
     password = request_json.get('password')
+    if not email or not password:
+        return '', 400
+    else:
+        return '', 200
 
-    return '', 200
 
-
+# User registration
 @app.route('/users', methods=['POST', 'GET'])
 def user():
     if request.method == 'POST':
+        user_id = session.get('user_id')
+        if user_id is None:
+            return '', 403
         user_json = request.json
         email = user_json.get('email')
         password = user_json.get('password')
@@ -41,7 +47,7 @@ def logout():
     return '', 401
 
 
-# User registration
+#
 @app.route('/users', methods=['POST'])
 def users():
     return '', 201
