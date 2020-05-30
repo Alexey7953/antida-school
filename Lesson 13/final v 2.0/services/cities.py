@@ -34,9 +34,7 @@ def cities():
         return '', 405
 
 
-"""Получение списка всех городов из базы данных"""
-
-
+# Получение списка всех городов из базы данных
 def read_all(self):
     query = (
         """
@@ -48,9 +46,7 @@ def read_all(self):
     return [dict(entry) for entry in cursor.fetchall()]
 
 
-"""Запись нового города в базу данных"""
-
-
+# Запись нового города в базу данных
 def create(self, name):
     query = (
         """
@@ -69,9 +65,7 @@ def create(self, name):
     return name
 
 
-"""Получение города из базы данных"""
-
-
+# Получение города из базы данных
 def read(self, name):
     query = (
         """
