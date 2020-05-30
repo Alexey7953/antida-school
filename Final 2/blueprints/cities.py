@@ -19,13 +19,15 @@ bp = Blueprint('cities', __name__)
 
 class CitiesView(MethodView):
     # Получение списка всех городов
-    def get(self):
+    @staticmethod
+    def get():
         with db.connection as connection:
             service = CitiesService(connection)
             cities = service.read_all()
             return jsonify(cities), 200
 
-    def post(self):
+    @staticmethod
+    def post():
         # Создание нового города
 
         name = request.json.get("name")
