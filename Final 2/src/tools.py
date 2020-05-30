@@ -2,6 +2,14 @@ from functools import wraps
 
 from flask import session
 
+from services.users import (
+    UsersService,
+    UserDoesNotExistsError,
+)
+from services.sellers import (
+    SellersService,
+    SellerDoesNotExistsError,
+)
 from src.database import db
 
 
