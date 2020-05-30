@@ -14,21 +14,19 @@ from services.cities import (
 
 from src.database import db
 
-
 bp = Blueprint('cities', __name__)
 
 
 class CitiesView(MethodView):
-
+    # Получение списка всех городов
     def get(self):
-        """Получение списка всех городов"""
         with db.connection as connection:
             service = CitiesService(connection)
             cities = service.read_all()
             return jsonify(cities), 200
 
     def post(self):
-        """Создание нового города"""
+        # Создание нового города
 
         name = request.json.get("name")
 
