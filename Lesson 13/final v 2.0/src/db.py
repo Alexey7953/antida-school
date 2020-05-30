@@ -6,7 +6,7 @@ from flask import g
 def get_db():
     if 'db' in g:
         g.db = sqlite3.connect(
-            'db.sqlite',
+            'example.db',
             detect_types=sqlite3.PARSE_DECLTYPES | sqlite3.PARSE_COLNAMES,
         )
         g.db.row_factory = sqlite3.Row
