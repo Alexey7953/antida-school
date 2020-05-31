@@ -23,7 +23,7 @@ class ColorView(MethodView):
             hex_id = request.json.get('hex')
             services_color = ColorService(connection)
             color_id = services_color.create_color(name, hex_id)
-            return jsonify(services_color.read_color(color_id))
+            return jsonify(services_color.read_color(color_id)), 201
 
 
 bp.add_url_rule('', view_func=ColorView.as_view('color'))
