@@ -23,15 +23,15 @@ class ColorService:
         cursor = self.connection.execute(query)
         return [dict(entry) for entry in cursor.fetchall()]
 
-    def read_color(self, name, _hex):
+    def read_color(self, color_id):
         query = (
             """
             SELECT *
             FROM color
-            WHERE name = ?
+            WHERE id = ?
             """
         )
-        params = (name, _hex)
+        params = (color_id, )
         cursor = self.connection.execute(query, params)
         color = cursor.fetchone()
 
@@ -49,9 +49,9 @@ class ColorService:
         params = (name, hex_id)
 
         try:
-            self.connection.execute(query, params)
+            cursor = self.connection.execute(query, params)
             self.connection.commit()
         except sqlite3.IntegrityError:
             raise ColorServiceError
 
-        return name
+        return cursor.lastrowid
