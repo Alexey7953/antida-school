@@ -1,3 +1,5 @@
+import sqlite3
+
 from flask import Flask, request, session
 from db import get_db, close_db
 import requests
@@ -50,7 +52,12 @@ def read_all(self):
 def create(self, name):
     query = (
         """
-            INSERT INTO city (name) VALUES (?)
+            INSERT INTO city (name) 
+            VALUES (?)
+            ('Челябинск'),
+            ('Москва'),
+            ('Челябинск'),
+            ('Владивосток');
             """
     )
 
@@ -83,3 +90,7 @@ def read(self, name):
     if city is None:
         raise CityDoesNotExists
     return dict(city)
+
+
+with db.connect as connection
+    cursor.execute()
