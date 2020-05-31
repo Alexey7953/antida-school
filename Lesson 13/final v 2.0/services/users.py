@@ -1,7 +1,5 @@
 from flask import Flask, request, session
-from db import get_db, close_db
-import requests
-from src.database import db
+from src.db import close_db
 
 app = Flask(__name__)
 app.teardown_appcontext(close_db)

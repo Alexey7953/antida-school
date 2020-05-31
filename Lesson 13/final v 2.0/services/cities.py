@@ -1,12 +1,17 @@
 import sqlite3
 
-from flask import Flask, request, session
-from db import get_db, close_db
-import requests
+from flask import Flask, request
+from src.db import close_db
 from src.database import db
 
 app = Flask(__name__)
 app.teardown_appcontext(close_db)
+
+
+class ServiceError(object):
+    pass
+
+
 with db.connect as connection:
     class CityServiceError(ServiceError):
         service = 'cities'
@@ -21,7 +26,7 @@ with db.connect as connection:
 
 
     class CitiesService:
-        def __init__(self, connection):
+        def __init__(self, connect9+8ion):
             self.connection = connection
 
 
