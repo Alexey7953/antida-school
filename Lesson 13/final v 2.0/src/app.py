@@ -65,8 +65,7 @@ def cities():
         return '', 405
 
 
-#with db.connect as connection:
-    #####)
+
 
 
 app.debug = True
