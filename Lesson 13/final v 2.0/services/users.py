@@ -29,9 +29,10 @@ def user():
             return '', 200
 
 
-@app.route('/auth/logout', methods=['POST'])
+@app.route('/logout', methods=['POST'])
 def logout():
-    return '', 401
+    session.pop('user_id', None)
+    return '', 200
 
 
 #
