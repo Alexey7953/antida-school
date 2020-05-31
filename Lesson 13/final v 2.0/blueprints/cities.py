@@ -21,29 +21,27 @@ bp = Blueprint('cities', __name__)
 class CitiesView(MethodView):
 
     def get(self):
-        """Получение списка всех городов"""
+        # Получение списка всех городов
         with db.connection as connection:
             service = CitiesService(connection)
             cities = service.read_all()
             return jsonify(cities), 200
 
     def post(self):
-        """Создание нового города"""
+        # Создание нового города
 
         name = request.json.get("name")
 
         with db.connection as connection:
-            service = CitiesService(connection)
+            city = CitiesService(connection)
 
             try:
-                city = service.read(name)
+                return jsonify(city.read(name)), 200
             except CityDoesNotExists:
-                service.create(name)
-                city = service.read(name)
+                city.create(name)
+                return jsonify(city.read(name)), 201
             except CityCreationError:
                 return '', 500
-
-            return jsonify(city), 200
 
 
 bp.add_url_rule('', view_func=CitiesView.as_view('cities'))
