@@ -13,7 +13,7 @@ class ColorService:
         self.connection = connection
 
     def read_all_color(self):
-        # Получение списка всех цветов
+        """ Получение списка всех цветов """
         query = (
             """
             SELECT *
@@ -40,7 +40,7 @@ class ColorService:
         return dict(color)
 
     def create_color(self, name, hex_id):
-        # Создание цвета
+        """ Создание цвета """
         query = (
             """
             INSERT INTO color (name, hex) VALUES (?, ? )

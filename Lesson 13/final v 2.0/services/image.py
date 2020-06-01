@@ -12,7 +12,7 @@ class ImageService:
         self.connection = connection
 
     def create_image(self, url):
-        # Запись изображения в базу данных
+        """ Запись изображения в базу данных """
         query = (
             """
             INSERT INTO image (url, car_id) VALUES (?, 0)

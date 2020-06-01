@@ -20,7 +20,7 @@ class CitiesService:
         self.connection = connection
 
     def read_all(self):
-        # Получение списка всех городов из базы данных
+        """ Получение списка всех городов из базы данных """
         query = (
             """
             SELECT *
@@ -31,7 +31,7 @@ class CitiesService:
         return [dict(entry) for entry in cursor.fetchall()]
 
     def create(self, name):
-        # Запись нового города в базу данных
+        """ Запись нового города в базу данных """
 
         query = (
             """
@@ -50,7 +50,7 @@ class CitiesService:
         return name
 
     def read(self, name):
-        # Получение города из базы данных
+        """ Получение города из базы данных """
         query = (
             """
             SELECT *

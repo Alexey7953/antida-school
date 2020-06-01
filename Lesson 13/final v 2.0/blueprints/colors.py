@@ -10,14 +10,14 @@ bp = Blueprint('color', __name__)
 class ColorView(MethodView):
 
     def get(self):
-        # Получение списка всех цветов
+        """ Получение списка всех цветов """
         with db.connection as connection:
             services_color = ColorService(connection)
             color = services_color.read_all_color()
             return jsonify(color), 200
 
     def post(self):
-        # Создание цвета
+        """ Создание цвета """
         with db.connection as connection:
             name = request.json.get('name')
             hex_id = request.json.get('hex')
