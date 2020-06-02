@@ -7,6 +7,7 @@ from src.database import db
 from services.sellers import SellersService, SellerCreationError, SellerDoesNotExistsError
 from services.users import UsersService, UserCreationError, UserDoesNotExistsError
 from services.zipcode import ZipcodesCreationError, ZipcodesService
+from src.tools import user_request_check
 
 bp = Blueprint('users', __name__)
 
@@ -37,7 +38,7 @@ class UsersView(MethodView):
                 zipcode_service = ZipcodesService(connection)
                 try:
                     seller_id = seller_service.create(seller_data=request_json, user_id=user_id)
-                    zipcode_service.create(zipcode_data=request_json)
+                    zipcode_service.create(Zipcode_data=request_json)
                 except (SellerCreationError, ZipcodesCreationError):
                     return '', 409
 
