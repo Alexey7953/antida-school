@@ -10,6 +10,10 @@ class SellerDoesNotExistsError(object):
     pass
 
 
+class SellerCreationError(object):
+    pass
+
+
 class SellerBadRequest(object):
     pass
 
@@ -94,6 +98,7 @@ class SellersService:
             cursor = self.connection.execute(query, params)
             self.connection.commit()
         except sqlite3.IntegrityError:
+            raise SellerCreationError
         else:
             return cursor.lastrowid
         

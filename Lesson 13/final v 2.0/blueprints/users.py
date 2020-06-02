@@ -2,10 +2,17 @@ from flask import Blueprint, jsonify, request
 from flask.views import MethodView
 from werkzeug.security import generate_password_hash
 
-from database import db
-from services.users import UsersService
+from src.database import db
+
+from services.sellers import SellersService, SellerCreationError
+from services.users import UsersService, UserCreationError
+from services.zipcode import ZipcodesCreationError, Zip_codesService
 
 bp = Blueprint('users', __name__)
+
+
+
+
 
 class UsersView(MethodView):
     def post(self):
@@ -14,7 +21,7 @@ class UsersView(MethodView):
 
         if not user_request_check(request_json):
             return '', 400
-        request_json["password"]= generate_password_hash(request_json["password"])
+        request_json["password"] = generate_password_hash(request_json["password"])
 
         with db.connection as connection:
             user_service = UsersService(connection)
