@@ -24,7 +24,7 @@ class CarsService:
         query = (
             """
             INSERT INTO car (make, model, mileage, num_owners, reg_number)
-            VALUES (?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?)
             """
         )
         params = (
@@ -119,6 +119,7 @@ class CarsService:
         WHERE account.id = ?
             """
             params = (user_id,)
+
         cursor = self.connection.execute(query, params)
         entry = cursor.fethone()
         if entry is not None:
