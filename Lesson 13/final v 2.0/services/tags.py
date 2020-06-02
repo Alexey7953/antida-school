@@ -30,10 +30,10 @@ class TagsService:
             tag_id = self.get_tag_id(tag)
         except TagDoesNotExistsError:
             tag_id = self.create_tag(tag)
-        finally:
-            self.add_relation(tag_id=tag_id, ad_id=ad_id)
 
-    def create_tag(self, tag: str) ->:
+        self.add_relation(tag_id=tag_id, ad_id=ad_id)
+
+    def create_tag(self, tag: str) -> int:
         """Запись новго тега в базу данных"""
         try:
             cursor = self.connection.execute('INSERT INTO tag (name) VALUES (?)', (tag,))
@@ -52,16 +52,16 @@ class TagsService:
             raise TagDoesNotExistsError
         return tag["id"]
 
-    def add_relation(self, tad_id: int, ad_id: int):
+    def add_relation(self, tag_id: int, ad_id: int):
         """Сощдание MANY to MANY связи тэга и объявления"""
-        cursor = self.connection.execute('SELECT ad_id FROM ad_tag WHERE tag_id = ?', (tad_id,))
+        cursor = self.connection.execute('SELECT ad_id FROM ad_tag WHERE tag_id = ?', (tag_id,))
         adtag_relation = cursor.fetchone()
 
         if adtag_relation is not None and adtag_relation["ad_id"] == ad_id:
             return
 
         try:
-            self.connection.execute('INSERT INTO ad_tag (tag_id, ad_id) VALUES (?, ?)', (tad_id, ad_id))
+            self.connection.execute('INSERT INTO ad_tag (tag_id, ad_id) VALUES (?, ?)', (tag_id, ad_id))
             self.connection.commit()
         except sqlite3.IntegrityError:
             raise TagAdRelationCreationError
@@ -72,7 +72,7 @@ class TagsService:
             """
             SELECT tag.name
             FROM tag
-                JOIN ad_tag ON tag_id = ad_tag.tag_id
+                JOIN ad_tag ON tag.id = ad_tag.tag_id
             WHERE ad_tag.ad_id = ?
             """
         )
