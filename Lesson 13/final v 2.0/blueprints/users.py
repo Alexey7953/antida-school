@@ -4,14 +4,11 @@ from werkzeug.security import generate_password_hash
 
 from src.database import db
 
-from services.sellers import SellersService, SellerCreationError
-from services.users import UsersService, UserCreationError
-from services.zipcode import ZipcodesCreationError, Zip_codesService
+from services.sellers import SellersService, SellerCreationError, SellerDoesNotExistsError
+from services.users import UsersService, UserCreationError, UserDoesNotExistsError
+from services.zipcode import ZipcodesCreationError, ZipcodesService
 
 bp = Blueprint('users', __name__)
-
-
-
 
 
 class UsersView(MethodView):
@@ -49,3 +46,60 @@ class UsersView(MethodView):
 
             return jsonify(user), 201
 
+
+class UserView(MethodView):
+
+    @auth_required
+    def get(self, user_id, user):
+        """Получение информации о пользователе по id"""
+        with db.connection as connection:
+            user_service = UsersService(connection)
+            seller_service = SellersService(connection)
+            try:
+                user_data = user_service.read(user_id=user_id)
+                seller_data = seller_service.read(user_id=user_id)
+            except UserDoesNotExistsError:
+                return '', 404
+            except SellerDoesNotExistsError:
+                return jsonify(user_data)
+            else:
+                user_data.update(seller_data)
+                user_data.update({"is_seller": True})
+                return jsonify(user_data)
+
+    @auth_required
+    def patch(self, user_id, user):
+        """Частичное редактирование пользователя"""
+        if not user_id == user["id"]:
+            return '', 403
+
+        request_json = request.json
+        is_seller = request_json["is_seller"]
+
+        with db.connection as connection:
+            user_service = UsersService(connection)
+            seller_service = SellersService(connection)
+            zipcode_service = ZipcodesService(connection)
+            car_service = CarsService(connection)
+
+            user_service.update(user_id=user_id, data=request_json)
+            zipcode_service.update(data=request_json)
+
+            if is_seller:
+                try:
+                    seller_service.update(user_id=user_id, data=request_json)
+                except SellerDoesNotExistsError:
+                    seller_service.create(user_id=user_id, seller_data=request_json)
+            else:
+                seller_service.delete(user_id)
+                try:
+                    car_id = car_service.get_id(user_id=user_id)
+                    car_service.delete(car_id)
+                except CarDoesNotExists:
+                    pass
+
+        return self.get(user_id)
+
+
+bp.add_url_rule('', view_func=UsersView.as_view('users'))
+bp.add_url_rule('/<int:user_id>', view_func=UserView.as_view('user'))

@@ -19,7 +19,7 @@ class ZipcodesCreationError(object):
     pass
 
 
-class Zip_codesService:
+class ZipcodesService:
     """Сервис взаимодействия с таблицей zipcode"""
     def __init__(self, connection):
         self.connection = connection
