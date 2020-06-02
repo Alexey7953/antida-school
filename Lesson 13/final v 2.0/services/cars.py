@@ -71,7 +71,7 @@ class CarsService:
         except sqlite3.IntegrityError:
             raise CarDeleteError
 
-    def read(self, car_id: int = None, ad_id: int = None) -> dict:
+    def read_car(self, car_id: int = None, ad_id: int = None) -> dict:
         """Чтение данных автомобиля из базы с возможностью фильтрации по продавцу или объявлению"""
         query = (
             """
