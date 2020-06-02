@@ -9,6 +9,7 @@ upload_folder = 'download'
 
 @bp.route('', methods=['POST'])
 def post_image():
+    """Загрузка изображения на сервер"""
     file = request.files['file']
     if file:
         if not os.path.exists(upload_folder):
@@ -26,4 +27,5 @@ def post_image():
 
 @bp.route('<name>', methods=["GET"])
 def get_image(name):
-    return send_file(os.path.join(upload_folder, name))
+    """Загрузка изображения с сервера"""
+    return send_file(os.path.join('upload_folder', name))
