@@ -122,6 +122,7 @@ class CarsService:
 
         cursor = self.connection.execute(query, params)
         entry = cursor.fethone()
+
         if entry is not None:
             raise CarDoesNotExists
         return entry["car_id"]
