@@ -8,50 +8,103 @@ class ColorServiceError(ServiceError):
     service = 'color'
 
 
+class ColorCreationError(object):
+    pass
+
+
+class ColorDoesNotExists(object):
+    pass
+
+
+class CarColorRelationCreationError(object):
+    pass
+
+
 class ColorService:
     def __init__(self, connection):
         self.connection = connection
 
-    def read_all_color(self):
-        """ Получение списка всех цветов """
+    def read_all_color(self, ad_id=None) -> list:
+        """Получение списка всех цветов из базы. Возможна фильтрация по объявлению"""
         query = (
             """
-            SELECT *
+            SELECT color.id, color.name, color.hex
             FROM color
             """
         )
-        cursor = self.connection.execute(query)
+        params = ()
+
+        if ad_id is not None:
+            query += """
+                JOIN carcolor ON color.id = carcolor.color_id
+                JOIN car ON carcolor.car_id = car.id
+                JOIN ad ON car.id = ad.car_id
+            WHERE ad.id = ?
+            """
+            params = (ad_id,)
+
+        cursor = self.connection.execute(query, params)
         return [dict(entry) for entry in cursor.fetchall()]
 
-    def read_color(self, color_id):
+    def create_color(self, str_name: str, hex_name: str) -> str:
+        """Запись нового города в базу данных. Возвращает название города"""
+        query = (
+            """
+            INSERT INTO color (name, hex) VALUES (?, ?)
+            """
+        )
+
+        params = (str_name, hex_name)
+
+        try:
+            self.connection.execute(query, params)
+            self.connection.commit()
+        except sqlite3.IntegrityError:
+            raise ColorCreationError
+
+        return str_name
+
+    def read_color(self, name: str) -> dict:
+        """Получение данных города из базы. Возвращает результат в виде словаря"""
         query = (
             """
             SELECT *
             FROM color
-            WHERE id = ?
+            WHERE name = ?
             """
         )
-        params = (color_id, )
+
+        params = (name,)
+
         cursor = self.connection.execute(query, params)
         color = cursor.fetchone()
 
         if color is None:
-            raise ColorServiceError
+            raise ColorDoesNotExists
         return dict(color)
 
-    def create_color(self, name, hex_id):
-        """ Создание цвета """
+    def add_to_car_color(self, color_id: int, car_id: int):
+        """Создание MANY TO MANY связи цвета с машиной"""
         query = (
             """
-            INSERT INTO color (name, hex) VALUES (?, ? )
+            INSERT INTO carcolor (color_id, car_id) VALUES (?, ?)
             """
         )
-        params = (name, hex_id)
+        params = (color_id, car_id)
+
+        cursor = self.connection.execute('SELECT name FROM color WHERE id = ?', (color_id,))
+        color_name = cursor.fetchone()
+        if color_name is None:
+            return
+
+        cursor = self.connection.execute('SELECT car_id FROM carcolor WHERE color_id = ?', (color_id,))
+        carcolor_relation = cursor.fetchone()
+
+        if carcolor_relation is not None and carcolor_relation["car_id"] == car_id:
+            return
 
         try:
-            cursor = self.connection.execute(query, params)
+            self.connection.execute(query, params)
             self.connection.commit()
         except sqlite3.IntegrityError:
-            raise ColorServiceError
-
-        return cursor.lastrowid
+            raise CarColorRelationCreationError
