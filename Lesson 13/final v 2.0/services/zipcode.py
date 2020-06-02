@@ -40,10 +40,10 @@ class Zip_codesService:
             return True
         return False
 
-    def create(self, zipcode_data: dict):
+    def create(self, zip_code_data: dict):
         """Создание новой связи в базе"""
-        zip_code = zipcode_data["zip_code"]
-        city_id = zipcode_data["city_id"]
+        zip_code = zip_code_data["zip_code"]
+        city_id = zip_code_data["city_id"]
 
         query = (
             """
