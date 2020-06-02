@@ -64,7 +64,6 @@ class AdsView(MethodView):
 
         return jsonify(ads)
 
-
     @auth_required
     @seller_required
     def post(self, user):
@@ -170,10 +169,3 @@ class AdView(MethodView):
 
 bp.add_url_rule('', view_func=AdsView.as_view('ads'))
 bp.add_url_rule('/<int:ad_id>', view_func=AdsView.as_view('ad'))
-
-
-
-
-
-
-
