@@ -13,6 +13,6 @@ def create_app():
     app.register_blueprint(bp_color, url_prefix='/color')
     app.register_blueprint(bp_cities, url_prefix='/cities')
     app.register_blueprint(bp_image, url_prefix='/image')
-    app.register_blueprint(bp_image, url_prefix='/ads')
+    app.register_blueprint(, url_prefix='/ads')
     db.init_app(app)
     return app
