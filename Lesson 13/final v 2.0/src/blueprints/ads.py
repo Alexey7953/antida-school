@@ -3,12 +3,12 @@ from flask import Blueprint, jsonify, request
 from flask.views import MethodView
 
 from database import db
-from services.ads import AdsService, AdDoesNotExists
-from services.cars import CarsService, CarDoesNotExists
-from services.colors import ColorService
-from services.image import ImageService
-from services.tags import TagsService
-from tools import auth_required, seller_required, owner_required
+from src.services.ads import AdsService, AdDoesNotExists
+from src.services.cars import CarsService, CarDoesNotExists
+from src.services.colors import ColorService
+from src.services.image import ImageService
+from src.services.tags import TagsService
+from src.tools import auth_required, seller_required, owner_required
 
 bp = Blueprint('ads', __name__)
 
