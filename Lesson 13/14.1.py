@@ -25,10 +25,18 @@ import sqlite3
 
 with sqlite3.connect('example_2.db') as connection:
     cursor = connection.cursor()
-
     cursor.execute(
         """
-        SELECT phone
-        FROM main.seller
+        SELECT 'Международный формат', phone 
+        from seller
+        WHERE phone LIKE '+7%'
+
+        UNION
+
+        SELECT 'Старый формат', phone 
+        from seller
+        WHERE phone LIKE '8%'
         """
     )
+    for entry in cursor.fetchall():
+        print(entry)
