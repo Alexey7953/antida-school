@@ -2,12 +2,13 @@ from flask import Blueprint, jsonify, request
 from flask.views import MethodView
 from werkzeug.security import generate_password_hash
 
+from services.cars import CarDoesNotExists, CarsService
 from src.database import db
 
 from services.sellers import SellersService, SellerCreationError, SellerDoesNotExistsError
 from services.users import UsersService, UserCreationError, UserDoesNotExistsError
 from services.zipcode import ZipcodesCreationError, ZipcodesService
-from src.tools import user_request_check
+from src.tools import user_request_check, auth_required
 
 bp = Blueprint('users', __name__)
 
