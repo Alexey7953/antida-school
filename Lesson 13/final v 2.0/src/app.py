@@ -8,7 +8,6 @@ from blueprints.users import bp as users_bp
 from blueprints.ads import bp as ads_bp
 
 
-
 def create_app():
     app = Flask(__name__)
     app.config.from_object('config.Config')
@@ -20,4 +19,3 @@ def create_app():
     app.register_blueprint(ads_bp, url_prefix='/ads')
     db.init_app(app)
     return app
-
