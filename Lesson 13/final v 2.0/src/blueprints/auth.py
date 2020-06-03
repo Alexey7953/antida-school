@@ -1,6 +1,6 @@
 from flask import Blueprint, request, session
 from werkzeug.security import check_password_hash
-from services.users import UsersService, UserDoesNotExistsError
+from src.services.users import UsersService, UserDoesNotExistsError
 from src.database import db
 
 bp = Blueprint('auth', __name__)
