@@ -1,5 +1,5 @@
 import os
-from services.image import ImageService
+from src.services.image import ImageService
 from src.database import db
 from flask import Blueprint, request, jsonify, url_for, send_file
 
