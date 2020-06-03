@@ -6,11 +6,7 @@ from flask import (
 
 from flask.views import MethodView
 
-from services.cities import (
-    CitiesService,
-    CityCreationError,
-    CityDoesNotExists
-)
+from src.services.cities import CitiesService, CityCreationError, CityDoesNotExists
 
 from src.database import db
 
