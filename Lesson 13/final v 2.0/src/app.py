@@ -1,11 +1,11 @@
 from flask import Flask
 from src.database import db
-from blueprints.cities import bp as bp_cities
-from blueprints.colors import bp as bp_color
-from blueprints.image import bp as bp_image
-from blueprints.auth import bp as bp_auth
-from blueprints.users import bp as users_bp
-from blueprints.ads import bp as ads_bp
+from src.blueprints.cities import bp as bp_cities
+from src.blueprints.colors import bp as bp_color
+from src.blueprints.image import bp as bp_image
+from src.blueprints.auth import bp as bp_auth
+from src.blueprints.users import bp as users_bp
+from src.blueprints.ads import bp as ads_bp
 
 
 def create_app():
