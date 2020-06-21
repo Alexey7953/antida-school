@@ -6,7 +6,7 @@ from flask import (
 
 from werkzeug.security import check_password_hash
 
-from database import db
+from src.database import db
 
 bp = Blueprint('auth', __name__)
 
