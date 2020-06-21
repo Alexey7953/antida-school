@@ -21,7 +21,8 @@ class CategoriesView(MethodView):
 
 class CategoryView(MethodView):
     def patch(self, category_id: int):
-        account_id = 1  # TODO взять из сессии
+        # account_id = session['id']
+        account_id = 1  # для тестов
         request_json = request.json
         parent_id = request_json.get('parent_id')
         name = request_json.get('name')
