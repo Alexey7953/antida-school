@@ -1,29 +1,7 @@
 import sqlite3
-from src.exceptions import ServiceError
 
-
-class SellersServiceError(ServiceError):
-    service = "sellers"
-
-
-class SellerDoesNotExistsError(object):
-    pass
-
-
-class SellerCreationError(object):
-    pass
-
-
-class SellerBadRequest(object):
-    pass
-
-
-class SellerUpdateError(object):
-    pass
-
-
-class SellerDeleteError(object):
-    pass
+from exceptions.seller import SellerDoesNotExistsError, SellerBadRequest, SellerCreationError, SellerUpdateError, \
+    SellerDeleteError
 
 
 class SellersService:

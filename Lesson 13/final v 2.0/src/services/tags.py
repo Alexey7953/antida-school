@@ -1,21 +1,6 @@
 import sqlite3
-from src.exceptions import ServiceError
 
-
-class TagsServiceError(ServiceError):
-    service = 'tags'
-
-
-class TagDoesNotExistsError(object):
-    pass
-
-
-class TagsCreationError(object):
-    pass
-
-
-class TagAdRelationCreationError(object):
-    pass
+from exceptions.tags import TagDoesNotExistsError, TagsCreationError, TagAdRelationCreationError
 
 
 class TagsService:

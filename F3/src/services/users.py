@@ -1,17 +1,20 @@
-import sqlite3
-
-from src.exceptions import ServiceError
-
-
-class UsersServiceError(ServiceError):
-    service = 'users'
+from database import db
+from exceptions.users import UserNotFound
 
 
-def read_user(user_id):
-    query = (
-        """
-    SELECT id, first_name, last_name, email
-    FROM account
-    WHERE id = ?
-        """
-        )
+class UsersService:
+    def __init__(self):
+        self.connection = db.connection
+
+    def getuser(self, account_id: int):
+        """Получение пользователя"""
+
+        query = f"SELECT id, first_name, last_name, email FROM account WHERE id = ?"
+        params = (account_id,)
+        with self.connection as connection:
+            cursor = connection.execute(query, params)
+            user = cursor.fetchone()
+
+        if user is None:
+            raise UserNotFound
+        return dict(user)

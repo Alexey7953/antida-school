@@ -1,22 +1,6 @@
 import sqlite3
 
-from src.exceptions import ServiceError
-
-
-class ZipcodesServiceError(ServiceError):
-    service = 'zipcode'
-
-
-class Zip_codesCreationError(ZipcodesServiceError):
-    pass
-
-
-class Zip_codesUpdateError(ZipcodesServiceError):
-    pass
-
-
-class ZipcodesCreationError(object):
-    pass
+from exceptions.zipcode import Zip_codesCreationError
 
 
 class ZipcodesService:
@@ -63,7 +47,7 @@ class ZipcodesService:
             self.connection.execute(query, params)
             self.connection.commit()
         except sqlite3.IntegrityError:
-            raise ZipcodesCreationError
+            raise Zip_codesCreationError
 
     def update(self, data: dict):
         """Частичное редактирование записи в базе"""

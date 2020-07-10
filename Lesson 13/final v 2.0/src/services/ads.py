@@ -1,26 +1,6 @@
 import sqlite3
 
-from src.exceptions import ServiceError
-
-
-class AdsError(ServiceError):
-    service = 'ads'
-
-
-class AdsCreationError(object):
-    pass
-
-
-class AdsUpdateError(object):
-    pass
-
-
-class AdsDeleteError(object):
-    pass
-
-
-class AdDoesNotExists(object):
-    pass
+from exceptions.ads import AdsCreationError, AdsUpdateError, AdsDeleteError, AdDoesNotExists
 
 
 class AdsService:

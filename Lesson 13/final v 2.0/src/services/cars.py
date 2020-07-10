@@ -1,17 +1,6 @@
 import sqlite3
-from src.exceptions import ServiceError
 
-
-class CarCreationError(object):
-    pass
-
-
-class CarDeleteError(object):
-    pass
-
-
-class CarDoesNotExists(object):
-    pass
+from exceptions.cars import CarCreationError, CarDeleteError, CarDoesNotExists
 
 
 class CarsService:

@@ -1,21 +1,6 @@
 import sqlite3
-from src.exceptions import ServiceError
 
-
-class UsersServiceError(ServiceError):
-    service = 'users'
-
-
-class UserDoesNotExistsError(object):
-    pass
-
-
-class UserCreationError(object):
-    pass
-
-
-class UserUpdateError(object):
-    pass
+from exceptions.users import UserDoesNotExistsError, UserCreationError, UserUpdateError
 
 
 class UsersService:

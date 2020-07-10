@@ -1,23 +1,7 @@
 import sqlite3
 
 from blueprints import colors
-from src.exceptions import ServiceError
-
-
-class ColorServiceError(ServiceError):
-    service = 'color'
-
-
-class ColorCreationError(object):
-    pass
-
-
-class ColorDoesNotExists(object):
-    pass
-
-
-class CarColorRelationCreationError(object):
-    pass
+from exceptions.colors import ColorCreationError, ColorDoesNotExists, CarColorRelationCreationError
 
 
 class ColorService:

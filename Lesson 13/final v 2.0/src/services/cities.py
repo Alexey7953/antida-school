@@ -1,18 +1,6 @@
 import sqlite3
 
-from src.exceptions import ServiceError
-
-
-class CityServiceError(ServiceError):
-    service = 'cities'
-
-
-class CityDoesNotExists(CityServiceError):
-    pass
-
-
-class CityCreationError(CityServiceError):
-    pass
+from exceptions.cities import CityCreationError, CityDoesNotExists
 
 
 class CitiesService:

@@ -1,14 +1,6 @@
 import sqlite3
 from blueprints import image
-from src.exceptions import ServiceError
-
-
-class ImageServiceError(object):
-    pass
-
-
-class ImageUpdateError(object):
-    pass
+from exceptions.image import ImageServiceError, ImageUpdateError
 
 
 class ImageService:
